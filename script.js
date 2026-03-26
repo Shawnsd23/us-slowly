@@ -1,25 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-  const btn = document.getElementById("enter-btn");
-  const input = document.getElementById("password");
+  const btn = document.getElementById("enter");
+  const pass = document.getElementById("password");
   const error = document.getElementById("error");
 
-  const passwordScreen = document.getElementById("password-screen");
-  const mainContent = document.getElementById("main-content");
+  const screen = document.getElementById("password-screen");
+  const main = document.getElementById("main");
 
-  const music = document.getElementById("bg-music");
+  const music = document.getElementById("music");
 
-  btn.addEventListener("click", function () {
+  btn.addEventListener("click", () => {
 
-    if (input.value === "25/09/2025") {
+    if (pass.value === "25/09/2025") {
 
-      passwordScreen.style.display = "none";
-      mainContent.classList.remove("hidden");
+      screen.style.display = "none";
+      main.classList.remove("hidden");
 
-      if (music) {
-        music.volume = 0.2;
-        music.play().catch(() => {});
-      }
+      music.volume = 0.3;
+      music.play().catch(()=>{});
 
     } else {
       error.innerText = "wrong password";
@@ -27,14 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-  // SCROLL
+  // SCROLL ANIMATION
   const reveals = document.querySelectorAll(".reveal");
 
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", () => {
     reveals.forEach(el => {
       const top = el.getBoundingClientRect().top;
-      if (top < window.innerHeight - 80) {
-        el.classList.add("active");
+      if (top < window.innerHeight - 100) {
+        el.classList.add("show");
       }
     });
   });

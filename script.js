@@ -11,11 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const music = document.getElementById("bg-music");
 
-  const popup = document.getElementById("popup");
-  const closePopup = document.getElementById("close-popup");
-  const secret = document.getElementById("secret-trigger");
-
-  // PASSWORD CHECK
+  // PASSWORD
   btn.addEventListener("click", function () {
     if (input.value === correctPassword) {
 
@@ -44,15 +40,6 @@ document.addEventListener("DOMContentLoaded", function () {
         el.classList.add("active");
       }
     });
-  });
-
-  // SECRET POPUP
-  secret.addEventListener("click", function () {
-    popup.classList.remove("hidden");
-  });
-
-  closePopup.addEventListener("click", function () {
-    popup.classList.add("hidden");
   });
 
 });

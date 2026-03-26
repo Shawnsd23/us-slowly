@@ -13,28 +13,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (input.value === "25/09/2025") {
 
-      passwordScreen.style.display = "none";
-      mainContent.style.display = "block";
+      passwordScreen.style.opacity = "0";
 
-      // play music safely
+      setTimeout(() => {
+        passwordScreen.style.display = "none";
+        mainContent.classList.remove("hidden");
+      }, 500);
+
       if (music) {
         music.volume = 0.2;
         music.play().catch(() => {});
       }
 
     } else {
-      error.innerText = "wrong password";
+      error.innerText = "shayad yeh woh yaad nahi…";
     }
 
   });
 
-  // scroll animation
+  // SCROLL ANIMATION
   const reveals = document.querySelectorAll(".reveal");
 
   window.addEventListener("scroll", function () {
     reveals.forEach(el => {
       const top = el.getBoundingClientRect().top;
-      if (top < window.innerHeight - 50) {
+      if (top < window.innerHeight - 80) {
         el.classList.add("active");
       }
     });

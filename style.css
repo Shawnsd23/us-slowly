@@ -1,137 +1,112 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+:root {
+    --bg-color: #fff0f3;
+    --accent-color: #ff4d6d;
+    --text-color: #590d22;
 }
 
 body {
-  color: white;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
 }
 
-/* ANIMATED BACKGROUND */
-body::before {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, #ff6a88, #ff99ac, #fad0c4, #ffdde1);
-  animation: moveBg 15s infinite linear;
-  z-index: -2;
+/* Lock Screen */
+#lock-screen {
+    position: fixed;
+    inset: 0;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
 }
 
-@keyframes moveBg {
-  0% { transform: translate(0,0); }
-  50% { transform: translate(-25%, -25%); }
-  100% { transform: translate(0,0); }
-}
-
-/* PARTICLES */
-.particles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.15;
-  z-index: -1;
-}
-
-/* PASSWORD */
-#password-screen {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.glass {
-  backdrop-filter: blur(15px);
-  background: rgba(255,255,255,0.1);
-  padding: 30px;
-  border-radius: 20px;
-  text-align: center;
+.lock-card {
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 input {
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 10px;
-  border: none;
+    padding: 10px;
+    border: 2px solid var(--accent-color);
+    border-radius: 10px;
+    outline: none;
+    margin: 10px 0;
 }
 
 button {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background: #ff6a88;
-  color: white;
-  cursor: pointer;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-/* MAIN */
+/* Gallery Layout */
 .hidden { display: none; }
 
-section {
-  min-height: 100vh;
-  padding: 50px 20px;
+header {
+    text-align: center;
+    padding: 50px 20px;
 }
 
-.center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  text-align: center;
+.polaroid-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
 }
 
-/* TITLE */
-.title {
-  font-size: 3rem;
+/* The Polaroid Effect */
+.polaroid {
+    background: white;
+    padding: 15px 15px 30px 15px;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+    transform: rotate(-2deg);
+    transition: transform 0.4s ease;
 }
 
-/* REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s;
-  margin: 15px 0;
+.polaroid:nth-child(even) { transform: rotate(3deg); }
+
+.polaroid:hover {
+    transform: scale(1.1) rotate(0deg);
+    z-index: 5;
 }
 
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
+.photo-frame img {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
 }
 
-/* POLAROIDS */
-.polaroids {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.caption {
+    font-family: 'Brush Script MT', cursive, sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 15px;
 }
 
-.card {
-  background: white;
-  color: black;
-  padding: 10px;
-  width: 150px;
-  transform: rotate(-3deg);
-  border-radius: 10px;
+/* Floating Heart Animation */
+.heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 24px;
+    animation: floatUp 4s linear forwards;
+    z-index: -1;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 5px;
-}
-
-.card:nth-child(2) {
-  transform: rotate(3deg);
-}
-
-/* FINAL TEXT */
-.final {
-  font-size: 1.2rem;
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) translateX(50px);
+        opacity: 0;
+    }
 }

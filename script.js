@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  const correctPassword = "25/09/2025";
-
   const btn = document.getElementById("enter-btn");
   const input = document.getElementById("password");
   const error = document.getElementById("error");
@@ -11,32 +9,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const music = document.getElementById("bg-music");
 
-  // PASSWORD
   btn.addEventListener("click", function () {
-    if (input.value === correctPassword) {
+
+    if (input.value === "25/09/2025") {
 
       passwordScreen.style.display = "none";
-      mainContent.classList.remove("hidden");
+      mainContent.style.display = "block";
 
+      // play music safely
       if (music) {
         music.volume = 0.2;
         music.play().catch(() => {});
       }
 
     } else {
-      error.innerText = "shayad yeh woh yaad nahi…";
+      error.innerText = "wrong password";
     }
+
   });
 
-  // SCROLL ANIMATION
+  // scroll animation
   const reveals = document.querySelectorAll(".reveal");
 
   window.addEventListener("scroll", function () {
     reveals.forEach(el => {
-      const windowHeight = window.innerHeight;
-      const elementTop = el.getBoundingClientRect().top;
-
-      if (elementTop < windowHeight - 100) {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 50) {
         el.classList.add("active");
       }
     });

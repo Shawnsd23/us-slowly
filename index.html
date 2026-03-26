@@ -1,67 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>still, us.</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 6 Months ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- PARTICLES -->
-<div class="particles"></div>
+    <div id="lock-screen">
+        <div class="lock-card">
+            <h2>Our Private Memories</h2>
+            <p>Enter our special 4-digit date to enter</p>
+            <input type="password" id="passInput" placeholder="MMDD">
+            <button onclick="checkPass()">Unlock My Heart</button>
+        </div>
+    </div>
 
-<!-- PASSWORD -->
-<div id="password-screen">
-  <div class="glass">
-    <h2>Only us.</h2>
-    <input type="password" id="password" placeholder="Enter password">
-    <button id="enter">Enter</button>
-    <p id="error"></p>
-  </div>
-</div>
+    <div id="main-content" class="hidden">
+        <header>
+            <h1 class="fade-in">Happy 6 Months, Beautiful!</h1>
+            <p class="subtitle">180 Days of Us</p>
+        </header>
 
-<!-- MAIN -->
-<div id="main" class="hidden">
+        <div class="polaroid-gallery">
+            <div class="polaroid">
+                <div class="photo-frame">
+                    <img src="photo1.jpg" alt="Our First Date">
+                </div>
+                <p class="caption">Where it all started...</p>
+            </div>
 
-<audio id="music" src="music.mp3" loop></audio>
+            <div class="polaroid">
+                <div class="photo-frame">
+                    <img src="photo2.jpg" alt="A Special Moment">
+                </div>
+                <p class="caption">My favorite smile.</p>
+            </div>
 
-<section class="center">
-  <h1 class="title">still, us.</h1>
-  <p>6 months of something I never planned…</p>
-</section>
+            <div class="polaroid">
+                <div class="photo-frame">
+                    <img src="photo3.jpg" alt="Today">
+                </div>
+                <p class="caption">To many more months! ❤️</p>
+            </div>
+        </div>
 
-<section>
-  <p class="reveal">I wasn’t looking for you…</p>
-  <p class="reveal">and somehow… you happened.</p>
-  <p class="reveal">slowly… quietly…</p>
-  <p class="reveal">and now you feel like home.</p>
-</section>
+        <audio id="bgMusic" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
-<section class="center">
-  <h2>moments.</h2>
-
-  <div class="polaroids">
-    <div class="card"><img src="img1.jpg"><p>this one.</p></div>
-    <div class="card"><img src="img2.jpg"><p>you smiling.</p></div>
-    <div class="card"><img src="img3.jpg"><p>mine.</p></div>
-  </div>
-</section>
-
-<section class="center">
-  <p class="final">
-    I don’t need perfect.<br>
-    I just need this…<br>
-    with you.
-  </p>
-</section>
-
-<section class="center">
-  <h2>Happy 6 months ❤️</h2>
-</section>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

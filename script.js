@@ -2,7 +2,7 @@ function checkPass() {
     const password = document.getElementById('passInput').value;
     
     // Change '0927' to your actual anniversary or special date
-    if (password === '0927') {
+    if (password === '25/09/2025') {
         // Hide lock, show content
         document.getElementById('lock-screen').style.opacity = '0';
         setTimeout(() => {

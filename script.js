@@ -1,40 +1,39 @@
-document.addEventListener("DOMContentLoaded", () => {
-
-  const btn = document.getElementById("enter");
-  const pass = document.getElementById("password");
-  const error = document.getElementById("error");
-
-  const screen = document.getElementById("password-screen");
-  const main = document.getElementById("main");
-
-  const music = document.getElementById("music");
-
-  btn.addEventListener("click", () => {
-
-    if (pass.value === "25/09/2025") {
-
-      screen.style.display = "none";
-      main.classList.remove("hidden");
-
-      music.volume = 0.3;
-      music.play().catch(()=>{});
-
+function checkPass() {
+    const password = document.getElementById('passInput').value;
+    
+    // Change '0927' to your actual anniversary or special date
+    if (password === '0927') {
+        // Hide lock, show content
+        document.getElementById('lock-screen').style.opacity = '0';
+        setTimeout(() => {
+            document.getElementById('lock-screen').classList.add('hidden');
+            document.getElementById('main-content').classList.remove('hidden');
+            
+            // Start Music
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.5;
+            music.play();
+            
+            // Start Hearts
+            setInterval(createHeart, 400);
+        }, 500);
     } else {
-      error.innerText = "wrong password";
+        alert("That's not our date! Try again ❤️");
     }
+}
 
-  });
-
-  // SCROLL ANIMATION
-  const reveals = document.querySelectorAll(".reveal");
-
-  window.addEventListener("scroll", () => {
-    reveals.forEach(el => {
-      const top = el.getBoundingClientRect().top;
-      if (top < window.innerHeight - 100) {
-        el.classList.add("show");
-      }
-    });
-  });
-
-});
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = '❤️';
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.opacity = Math.random();
+    heart.style.fontSize = Math.random() * 20 + 20 + "px";
+    
+    document.body.appendChild(heart);
+    
+    // Remove heart from DOM after animation
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}

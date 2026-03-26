@@ -1,25 +1,30 @@
-const correctPassword = "25/09/2025";
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener("DOMContentLoaded", () => {
+  const correctPassword = "25/09/2025";
 
-  const passwordBtn = document.querySelector("button");
-  const passwordInput = document.getElementById("password");
+  const btn = document.getElementById("enter-btn");
+  const input = document.getElementById("password");
   const error = document.getElementById("error");
+
+  const passwordScreen = document.getElementById("password-screen");
+  const mainContent = document.getElementById("main-content");
+
   const music = document.getElementById("bg-music");
 
-  passwordBtn.addEventListener("click", () => {
-    if (passwordInput.value === correctPassword) {
-      
-      // Hide password screen
-      document.getElementById("password-screen").style.display = "none";
-      document.getElementById("main-content").classList.remove("hidden");
+  const popup = document.getElementById("popup");
+  const closePopup = document.getElementById("close-popup");
+  const secret = document.getElementById("secret-trigger");
 
-      // Play music safely
+  // PASSWORD CHECK
+  btn.addEventListener("click", function () {
+    if (input.value === correctPassword) {
+
+      passwordScreen.style.display = "none";
+      mainContent.classList.remove("hidden");
+
       if (music) {
         music.volume = 0.2;
-        music.play().catch(() => {
-          console.log("Autoplay blocked (normal)");
-        });
+        music.play().catch(() => {});
       }
 
     } else {
@@ -27,32 +32,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* SCROLL ANIMATION */
+  // SCROLL ANIMATION
   const reveals = document.querySelectorAll(".reveal");
 
-  window.addEventListener("scroll", () => {
+  window.addEventListener("scroll", function () {
     reveals.forEach(el => {
       const windowHeight = window.innerHeight;
-      const revealTop = el.getBoundingClientRect().top;
+      const elementTop = el.getBoundingClientRect().top;
 
-      if (revealTop < windowHeight - 100) {
+      if (elementTop < windowHeight - 100) {
         el.classList.add("active");
       }
     });
   });
 
-  /* SECRET MESSAGE */
-  const secret = document.getElementById("secret-trigger");
-  const popup = document.getElementById("popup");
+  // SECRET POPUP
+  secret.addEventListener("click", function () {
+    popup.classList.remove("hidden");
+  });
 
-  if (secret) {
-    secret.addEventListener("click", () => {
-      popup.classList.remove("hidden");
-    });
-  }
+  closePopup.addEventListener("click", function () {
+    popup.classList.add("hidden");
+  });
 
 });
-
-function closePopup() {
-  document.getElementById("popup").classList.add("hidden");
-}

@@ -13,12 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (input.value === "25/09/2025") {
 
-      passwordScreen.style.opacity = "0";
-
-      setTimeout(() => {
-        passwordScreen.style.display = "none";
-        mainContent.classList.remove("hidden");
-      }, 500);
+      passwordScreen.style.display = "none";
+      mainContent.classList.remove("hidden");
 
       if (music) {
         music.volume = 0.2;
@@ -26,12 +22,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
     } else {
-      error.innerText = "shayad yeh woh yaad nahi…";
+      error.innerText = "wrong password";
     }
 
   });
 
-  // SCROLL ANIMATION
+  // SCROLL
   const reveals = document.querySelectorAll(".reveal");
 
   window.addEventListener("scroll", function () {

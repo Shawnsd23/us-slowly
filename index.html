@@ -4,53 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our 6 Months ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            background: #fff0f3; 
+            font-family: 'Arial', sans-serif; 
+            overflow-x: hidden; 
+            color: #590d22;
+        }
+
+        /* The Password Screen */
+        #lock-screen { 
+            position: fixed; 
+            inset: 0; 
+            background: white; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 9999; 
+            transition: 0.5s;
+        }
+
+        .lock-box {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.2);
+            text-align: center;
+        }
+
+        input { 
+            padding: 12px; 
+            border: 2px solid #ff4d6d; 
+            border-radius: 8px; 
+            outline: none; 
+            font-size: 16px;
+        }
+
+        button { 
+            padding: 12px 25px; 
+            background: #ff4d6d; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* The Memories Page (Hidden by default) */
+        #main-content { 
+            display: none; 
+            padding: 50px 20px; 
+            text-align: center; 
+        }
+
+        .polaroid { 
+            background: white; 
+            padding: 15px 15px 35px 15px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            display: inline-block; 
+            margin: 20px; 
+            transform: rotate(-2deg); 
+            transition: 0.3s;
+        }
+        
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid:hover { transform: scale(1.05) rotate(0deg); }
+
+        .polaroid img { 
+            width: 280px; 
+            height: 300px; 
+            object-fit: cover; 
+            border: 1px solid #eee;
+        }
+
+        .caption { 
+            font-size: 1.5rem; 
+            margin-top: 15px; 
+            font-family: 'Cursive', sans-serif; 
+        }
+
+        /* Floating Hearts */
+        .heart { 
+            position: fixed; 
+            bottom: -50px; 
+            font-size: 24px;
+            z-index: -1;
+            animation: floatUp 4s linear forwards; 
+        }
+
+        @keyframes floatUp { 
+            to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } 
+        }
+    </style>
 </head>
 <body>
 
     <div id="lock-screen">
-        <div class="lock-card">
-            <h2>Our Private Memories</h2>
-            <p>Enter our special 4-digit date to enter</p>
-            <input type="password" id="passInput" placeholder="MMDD">
-            <button onclick="checkPass()">Unlock My Heart</button>
+        <div class="lock-box">
+            <h1>🔒 Private Gallery</h1>
+            <p>Enter our anniversary date to enter</p>
+            <input type="password" id="userPass" placeholder="e.g. 0927">
+            <br>
+            <button onclick="unlockSite()">Unlock Memories</button>
         </div>
     </div>
 
-    <div id="main-content" class="hidden">
-        <header>
-            <h1 class="fade-in">Happy 6 Months, Beautiful!</h1>
-            <p class="subtitle">180 Days of Us</p>
-        </header>
+    <div id="main-content">
+        <h1 style="font-size: 3rem;">Happy 6 Months! ❤️</h1>
+        <p>Every day with you is a gift.</p>
 
-        <div class="polaroid-gallery">
+        <div class="gallery">
             <div class="polaroid">
-                <div class="photo-frame">
-                    <img src="photo1.jpg" alt="Our First Date">
-                </div>
-                <p class="caption">Where it all started...</p>
+                <img src="photo1.jpg" alt="Memory 1">
+                <p class="caption">The Beginning</p>
             </div>
-
             <div class="polaroid">
-                <div class="photo-frame">
-                    <img src="photo2.jpg" alt="A Special Moment">
-                </div>
-                <p class="caption">My favorite smile.</p>
+                <img src="photo2.jpg" alt="Memory 2">
+                <p class="caption">My Favorite Day</p>
             </div>
-
             <div class="polaroid">
-                <div class="photo-frame">
-                    <img src="photo3.jpg" alt="Today">
-                </div>
-                <p class="caption">To many more months! ❤️</p>
+                <img src="photo3.jpg" alt="Memory 3">
+                <p class="caption">6 Months & Counting</p>
             </div>
         </div>
 
-        <audio id="bgMusic" loop>
+        <audio id="loveSong" loop>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function unlockSite() {
+            const typedPassword = document.getElementById('userPass').value;
+            
+            // CHANGE '1234' TO YOUR PASSWORD BELOW
+            if (typedPassword === '1234') {
+                
+                // Hide the lock screen
+                document.getElementById('lock-screen').style.display = 'none';
+                
+                // Show the memories
+                document.getElementById('main-content').style.display = 'block';
+
+                // Play music (Browsers only allow music after a button click)
+                const music = document.getElementById('loveSong');
+                music.play().catch(error => {
+                    console.log("Music couldn't play automatically, but that's okay!");
+                });
+
+                // Start the heart animation
+                setInterval(createHeart, 300);
+
+            } else {
+                alert("Incorrect password! Hint: It's our special date. ❤️");
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+    </script>
 </body>
 </html>
